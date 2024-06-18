@@ -68,7 +68,7 @@ data_subset$cult_back <- factor(data_subset$cult_back, levels = c("Western / Eur
 summary_table <-data_subset %>% tbl_summary(by = Groups, statistic = list(all_continuous() ~ "{mean} ({sd})", all_categorical() ~ "{n} / {N} ({p}%)"), 
                                             digits = all_continuous() ~ 2, label = c(age~ "Age", nationality ~ "Nationality",  cult_back="Cultural Background", 
                                                                                      rela_stat= "Relationship Status", children= "Children", education = "Education", dep_sev= "Depression Severity",
-                                                                                     BMI= "Body Mass Index (kg/m²)", testo_testo= "Testosterone (nmol/L)", biol_pulse= "Resting Heart Rate (bpm)", 
+                                                                                     BMI= "Body Mass Index (kg/mÂ²)", testo_testo= "Testosterone (nmol/L)", biol_pulse= "Resting Heart Rate (bpm)", 
                                                                                      biol_blood_sys= "Resting Systolic Blood Pressure (mmHg)", biol_blood_dias= "Resting Diastolic Blood Pressure (mmHg)"), 
                                             missing_text = "Missing") %>% add_difference() %>% add_n() %>% modify_fmt_fun(statistic ~ style_number) %>%
   modify_spanning_header(c("stat_1", "stat_2") ~ "**Status**") %>% modify_footnote(all_stat_cols() ~ "Mean (SD) or Frequency (%)") %>%
@@ -102,7 +102,7 @@ fisher.test(data_subset$education, data_subset$Groups) # p= 0.5 --> no significa
 summary_table2 <-data_subset %>% tbl_summary(by = Groups, statistic = list(all_continuous() ~ "{mean} ({sd})", all_categorical() ~ "{n} / {N} ({p}%)"), 
                                              digits = all_continuous() ~ 2, label = c(age~ "Age", nationality ~ "Nationality",  cult_back="Cultural Background", 
                                                                                       rela_stat= "Relationship Status", children= "Children", education = "Education", dep_sev= "Depression Severity",
-                                                                                      BMI= "Body Mass Index (kg/m²)", testo_testo= "Testosterone (nmol/L)", biol_pulse= "Resting Heart Rate (bpm)", 
+                                                                                      BMI= "Body Mass Index (kg/mÂ²)", testo_testo= "Testosterone (nmol/L)", biol_pulse= "Resting Heart Rate (bpm)", 
                                                                                       biol_blood_sys= "Resting Systolic Blood Pressure (mmHg)", biol_blood_dias= "Resting Diastolic Blood Pressure (mmHg)"), 
                                              missing_text = "missing") %>% add_p() %>% add_n() %>% modify_fmt_fun(statistic ~ style_number) %>%
   modify_spanning_header(c("stat_1", "stat_2") ~ "**Status**") %>% modify_footnote(all_stat_cols() ~ "Mean (SD) or Frequency (%)") %>%
@@ -147,7 +147,7 @@ wilcox.test
 # if depressed is the reference level -> alternative = "greater"
 # conf.int = TRUE --> hodges lehmann effect size
 
-# z score (needed for claculating the effect size)
+# z score (needed for calculating the effect size)
 coin::wilcox_test(af_bp_SUM ~ SCID, data= data_all, alternative = "less", conf.int=TRUE)
 
 # effect size
@@ -446,12 +446,12 @@ summ(lm_h9f)
 
 
 # standardized
-summ(lm_h9a, scale = TRUE) # MRNI Adj. R² = 0.12
-summ(lm_h9b, scale = TRUE) # CMNI Adj. R² = 0.22
-summ(lm_h9c, scale = TRUE) # resting HR Adj. R² = 0.01 
-summ(lm_h9d, scale = TRUE) # resting SBP Adj. R² = -0.01
-summ(lm_h9e, scale = TRUE) # resting DBP Adj. R² = -0.01
-summ(lm_h9f, scale = TRUE) # T Adj. R² = -0.01
+summ(lm_h9a, scale = TRUE) # MRNI Adj. RÂ² = 0.12
+summ(lm_h9b, scale = TRUE) # CMNI Adj. RÂ² = 0.22
+summ(lm_h9c, scale = TRUE) # resting HR Adj. RÂ² = 0.01 
+summ(lm_h9d, scale = TRUE) # resting SBP Adj. RÂ² = -0.01
+summ(lm_h9e, scale = TRUE) # resting DBP Adj. RÂ² = -0.01
+summ(lm_h9f, scale = TRUE) # T Adj. RÂ² = -0.01
 
 # TMI explain more variance in aggression than the biological factors.
 
@@ -486,13 +486,13 @@ lm_h2.3a  = lm(af_bp_SUM ~ MRNI_SUM*SCID, data = data_all)
 lm_h2.3b = lm(af_bp_SUM ~ CMNI_SUM*SCID, data = data_all)
 
 # unstandardized
-summ(lm_h2.1_bdi) # Adj. R² = 0.23
+summ(lm_h2.1_bdi) # Adj. RÂ² = 0.23
 p.corr = p.adjust(summ(lm_h2.1_bdi)$coef[, "p"], method = "holm")
-summ(lm_h2.2_bdi) # Adj. R² = 0.29 
+summ(lm_h2.2_bdi) # Adj. RÂ² = 0.29 
 p.corr = p.adjust(summ(lm_h2.2_bdi)$coef[, "p"], method = "holm")
-summ(lm_h2.3a) # Adj. R² = 0.17
+summ(lm_h2.3a) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h2.3a_bdi)$coef[, "p"], method = "holm")
-summ(lm_h2.3b) # Adj. R² = 0.24
+summ(lm_h2.3b) # Adj. RÂ² = 0.24
 p.corr = p.adjust(summ(lm_h2.3b_bdi)$coef[, "p"], method = "holm")
 
 
@@ -525,11 +525,11 @@ summary(bdi_cov4)
 lm_h3.1_bdi = lm(af_bp_SUM ~ biol_pulse + BDI_SUM, data = data_all)
 
 # unstandardized
-summ(lm_h3.1_bdi) # Adj. R² = 0.17
+summ(lm_h3.1_bdi) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h3.1_bdi)$coef[, "p"], method = "holm")
 
 # standardized
-summ(lm_h3.1_bdi, scale = TRUE) # Adj. R² = 0.17
+summ(lm_h3.1_bdi, scale = TRUE) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h3.1_bdi, scale = TRUE)$coef[, "p"], method = "holm")
 
 
@@ -548,9 +548,9 @@ lm_h3.1_bdi_bmi = lm(af_bp_SUM ~ biol_pulse + BDI_SUM + BMI, data = data_all)
 lm_h3.2_bmi = lm(af_bp_SUM ~ biol_pulse*SCID + BMI, data = data_all)
 
 # unstandardized
-summ(lm_h3.1_bdi_bmi) # Adj. R² = 0.16
+summ(lm_h3.1_bdi_bmi) # Adj. RÂ² = 0.16
 p.corr = p.adjust(summ(lm_h3.1_bdi_bmi)$coef[, "p"], method = "holm")
-summ(lm_h3.2_bmi) # Adj. R² = 0.07
+summ(lm_h3.2_bmi) # Adj. RÂ² = 0.07
 p.corr = p.adjust(summ(lm_h3.2_bmi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -562,7 +562,7 @@ p.corr = p.adjust(summ(lm_h3.2_bmi, scale = TRUE)$coef[, "p"], method = "holm")
 # Best models
 
 # BDI will be included as a covariate for linear regression models
-# BMI will NOT be included since its inclusion does not increase the adj. R² in all models
+# BMI will NOT be included since its inclusion does not increase the adj. RÂ² in all models
 
 lm_h3.1_bdi = lm(af_bp_SUM ~ biol_pulse + BDI_SUM, data = data_all)
 lm_h3.2 = lm(af_bp_SUM ~ biol_pulse*SCID, data = data_all) # without covariates
@@ -586,9 +586,9 @@ lm_h4.1a_bdi = lm(af_bp_SUM ~ biol_blood_sys + BDI_SUM, data = data_all)
 lm_h4.1b_bdi = lm(af_bp_SUM ~ biol_blood_dias + BDI_SUM, data = data_all)
 
 # unstandardized
-summ(lm_h4.1a_bdi) # Adj. R² = 0.16
+summ(lm_h4.1a_bdi) # Adj. RÂ² = 0.16
 p.corr = p.adjust(summ(lm_h4.1a_bdi)$coef[, "p"], method = "holm")
-summ(lm_h4.1b_bdi) # Adj. R² = 0.17
+summ(lm_h4.1b_bdi) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h4.1b_bdi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -613,9 +613,9 @@ lm_h4.1b_bdi_bmi = lm(af_bp_SUM ~ biol_blood_dias + BDI_SUM + BMI, data = data_a
 
 
 # unstandardized
-summ(lm_h4.1a_bdi_bmi) # Adj. R² = 0.16
+summ(lm_h4.1a_bdi_bmi) # Adj. RÂ² = 0.16
 p.corr = p.adjust(summ(lm_h4.1a_bdi_bmi)$coef[, "p"], method = "holm")
-summ(lm_h4.1b_bdi_bmi) # Adj. R² = 0.16
+summ(lm_h4.1b_bdi_bmi) # Adj. RÂ² = 0.16
 p.corr = p.adjust(summ(lm_h4.1b_bdi_bmi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -644,9 +644,9 @@ lm_h4.1a_bdi_A = lm(af_bp_SUM ~ biol_blood_sys + BDI_SUM + age, data = data_all)
 lm_h4.1b_bdi_A = lm(af_bp_SUM ~ biol_blood_dias + BDI_SUM + age, data = data_all)
 
 # unstandardized
-summ(lm_h4.1a_bdi_A) # Adj. R² = 0.15
+summ(lm_h4.1a_bdi_A) # Adj. RÂ² = 0.15
 p.corr = p.adjust(summ(lm_h4.1a_bdi_A)$coef[, "p"], method = "holm")
-summ(lm_h4.1b_bdi_A) # Adj. R² = 0.17
+summ(lm_h4.1b_bdi_A) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h4.1b_bdi_A)$coef[, "p"], method = "holm")
 
 
@@ -682,7 +682,7 @@ summary(bdi_cov8)
 lm_h5.1_bdi = lm(af_bp_SUM ~ testo_testo + BDI_SUM, data = data_all)
 
 # unstandardized
-summ(lm_h5.1_bdi) # Adj. R² = 0.15
+summ(lm_h5.1_bdi) # Adj. RÂ² = 0.15
 p.corr = p.adjust(summ(lm_h5.1_bdi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -702,9 +702,9 @@ lm_h5.1_bdi_bmi = lm(af_bp_SUM ~ testo_testo + BDI_SUM + BMI, data = data_all)
 lm_h5.2_bmi = lm(af_bp_SUM ~ testo_testo*SCID + BMI, data = data_all)
 
 # unstandardized
-summ(lm_h5.1_bdi_bmi) # Adj. R² = 0.15
+summ(lm_h5.1_bdi_bmi) # Adj. RÂ² = 0.15
 p.corr = p.adjust(summ(lm_h5.1_bdi_bmi)$coef[, "p"], method = "holm")
-summ(lm_h5.2_bmi) # Adj. R² = 0.05
+summ(lm_h5.2_bmi) # Adj. RÂ² = 0.05
 p.corr = p.adjust(summ(lm_h5.2_bmi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -746,13 +746,13 @@ lm_h6.2a_bmi = lm(af_bp_SUM ~ MRNI_SUM*HR_Group*SCID + BMI, data = data_all)
 lm_h6.2b_bmi = lm(af_bp_SUM ~ CMNI_SUM*HR_Group*SCID + BMI, data = data_all)
 
 # unstandardized
-summ(lm_h6.1a_bdi) # Adj. R² = 0.25
+summ(lm_h6.1a_bdi) # Adj. RÂ² = 0.25
 p.corr = p.adjust(summ(lm_h6.1a_bdi)$coef[, "p"], method = "holm")
-summ(lm_h6.1b_bdi) # Adj. R² = 0.33
+summ(lm_h6.1b_bdi) # Adj. RÂ² = 0.33
 p.corr = p.adjust(summ(lm_h6.1b_bdi)$coef[, "p"], method = "holm")
-summ(lm_h6.2a_bmi) # Adj. R² = 0.21
+summ(lm_h6.2a_bmi) # Adj. RÂ² = 0.21
 p.corr = p.adjust(summ(lm_h6.2a_bmi)$coef[, "p"], method = "holm")
-summ(lm_h6.2b_bmi) # Adj. R² = 0.33
+summ(lm_h6.2b_bmi) # Adj. RÂ² = 0.33
 p.corr = p.adjust(summ(lm_h6.2b_bmi)$coef[, "p"], method = "holm")
 
 
@@ -776,13 +776,13 @@ lm_h6.2a_bmi_A = lm(af_bp_SUM ~ MRNI_SUM*HR_Group*SCID + BMI + age, data = data_
 lm_h6.2b_bmi_A = lm(af_bp_SUM ~ CMNI_SUM*HR_Group*SCID + BMI + age, data = data_all)
 
 # unstandardized
-summ(lm_h6.1a_bdi_A) # Adj. R² = 0.24
+summ(lm_h6.1a_bdi_A) # Adj. RÂ² = 0.24
 p.corr = p.adjust(summ(lm_h6.1a_bdi_A)$coef[, "p"], method = "holm")
-summ(lm_h6.1b_bdi_A) # Adj. R² = 0.33
+summ(lm_h6.1b_bdi_A) # Adj. RÂ² = 0.33
 p.corr = p.adjust(summ(lm_h6.1b_bdi_A)$coef[, "p"], method = "holm")
-summ(lm_h6.2a_bmi_A) # Adj. R² = 0.20
+summ(lm_h6.2a_bmi_A) # Adj. RÂ² = 0.20
 p.corr = p.adjust(summ(lm_h6.2a_bmi_A)$coef[, "p"], method = "holm")
-summ(lm_h6.2b_bmi_A) # Adj. R² = 0.32
+summ(lm_h6.2b_bmi_A) # Adj. RÂ² = 0.32
 p.corr = p.adjust(summ(lm_h6.2b_bmi_A)$coef[, "p"], method = "holm")
 
 
@@ -824,13 +824,13 @@ lm_h7.1c_bdi = lm(af_bp_SUM ~ MRNI_SUM*DBP_Group + BDI_SUM, data = data_all)
 lm_h7.1d_bdi = lm(af_bp_SUM ~ CMNI_SUM*DBP_Group + BDI_SUM, data = data_all)
 
 # unstandardized
-summ(lm_h7.1a_bdi) # Adj. R² = 0.22
+summ(lm_h7.1a_bdi) # Adj. RÂ² = 0.22
 p.corr = p.adjust(summ(lm_h7.1a_bdi)$coef[, "p"], method = "holm")
-summ(lm_h7.1b_bdi) # Adj. R² = 0.29
+summ(lm_h7.1b_bdi) # Adj. RÂ² = 0.29
 p.corr = p.adjust(summ(lm_h7.1b_bdi)$coef[, "p"], method = "holm")
-summ(lm_h7.1c_bdi) # Adj. R² = 0.22
+summ(lm_h7.1c_bdi) # Adj. RÂ² = 0.22
 p.corr = p.adjust(summ(lm_h7.1c_bdi)$coef[, "p"], method = "holm")
-summ(lm_h7.1d_bdi) # Adj. R² = 0.26
+summ(lm_h7.1d_bdi) # Adj. RÂ² = 0.26
 p.corr = p.adjust(summ(lm_h7.1d_bdi)$coef[, "p"], method = "holm")
 
 
@@ -865,13 +865,13 @@ lm_h8.2b_bmi = lm(af_bp_SUM ~ CMNI_SUM*T_Group*SCID + BMI, data = data_all)
 
 
 # unstandardized
-summ(lm_h8.1a_bdi) # Adj. R² = 0.17
+summ(lm_h8.1a_bdi) # Adj. RÂ² = 0.17
 p.corr = p.adjust(summ(lm_h8.1a_bdi)$coef[, "p"], method = "holm")
-summ(lm_h8.1b_bdi) # Adj. R² = 0.26
+summ(lm_h8.1b_bdi) # Adj. RÂ² = 0.26
 p.corr = p.adjust(summ(lm_h8.1b_bdi)$coef[, "p"], method = "holm")
-summ(lm_h8.2a_bmi) # Adj. R² = 0.10
+summ(lm_h8.2a_bmi) # Adj. RÂ² = 0.10
 p.corr = p.adjust(summ(lm_h8.2a_bmi)$coef[, "p"], method = "holm")
-summ(lm_h8.2b_bmi) # Adj. R² = 0.19
+summ(lm_h8.2b_bmi) # Adj. RÂ² = 0.19
 p.corr = p.adjust(summ(lm_h8.2b_bmi)$coef[, "p"], method = "holm")
 
 # standardized
@@ -2057,7 +2057,7 @@ generate_regression_table(lm_h6.1a, "***TABLE 5. Regressions***", "SD=Standard D
 
 
 
-# Robust Regression Tables (without standardized betas, p.corr, and adj. R²)
+# Robust Regression Tables (without standardized betas, p.corr, and adj. RÂ²)
 generate_robust_regression_table <- function(model, description_text, additional_note ="") {
   # Extract coefficients and summary statistics
   coefs <- coef(summary(model))
